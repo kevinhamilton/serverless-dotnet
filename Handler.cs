@@ -16,22 +16,24 @@ namespace AwsDotnetCsharp
 
     public class Response
     {
-      public ResponseBody Body {get; set;}
-      public int StatusCode {get; set;}
-      public Dictionary<string, string> Headers {get; set;}
-      public bool isBase64Encoded {get; set;}
-      
-      public Response(string message, Request request, int status)
-      {
-        Body = new ResponseBody(message, request);
-        StatusCode = status;
-        isBase64Encoded = false;
-        Headers = new Dictionary<string, string>
+        public string body {get; set;}
+        public int statusCode {get; set;}
+        public Dictionary<string, string> headers {get; set;}
+        public bool isBase64Encoded {get; set;}
+
+        public Response(string message, Request request, int status)
         {
-            { "Content-Type", "application/json" },
-            { "Access-Control-Allow-Origin", "*" }
-        };
-      }
+            body = message;
+            // Execution failed due to configuration error: Malformed Lambda proxy response
+            // body = new ResponseBody(message, request);
+            statusCode = status;
+            isBase64Encoded = false;
+            headers = new Dictionary<string, string>
+            {
+                { "Content-Type", "application/json" },
+                { "Access-Control-Allow-Origin", "*" }
+            };
+        }
     }
 
     public class ResponseBody
@@ -47,14 +49,15 @@ namespace AwsDotnetCsharp
 
     public class Request
     {
-      public string Key1 {get; set;}
-      public string Key2 {get; set;}
-      public string Key3 {get; set;}
+        public string Key1 {get; set;}
+        public string Key2 {get; set;}
+        public string Key3 {get; set;}
 
-      public Request(string key1, string key2, string key3){
-        Key1 = key1;
-        Key2 = key2;
-        Key3 = key3;
-      }
+        public Request(string key1, string key2, string key3)
+        {
+            Key1 = key1;
+            Key2 = key2;
+            Key3 = key3;
+        }
     }
 }
