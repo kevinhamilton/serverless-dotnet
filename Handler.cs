@@ -20,6 +20,7 @@ namespace AwsDotnetCsharp
       public int StatusCode {get; set;}
       public Dictionary<string, string> Headers {get; set;}
       public bool isBase64Encoded {get; set;}
+      
       public Response(string message, Request request, int status)
       {
         Body = new ResponseBody(message, request);
@@ -37,6 +38,7 @@ namespace AwsDotnetCsharp
     {
         public string Message {get; set;}
         public Request Request {get; set;}
+
         public ResponseBody(string message, Request request) {
             Message = message;
             Request = request;
