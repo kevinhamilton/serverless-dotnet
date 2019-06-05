@@ -55,14 +55,12 @@ functions:
     handler: CsharpHandlers::AwsDotnetCsharp.Handlers.Example::Hello
     events:
         - http: GET example
-
-    # you can add packaging information here
     package:
       artifact: bin/release/netcoreapp2.1/hello.zip
   hello:
     handler: CsharpHandlers::AwsDotnetCsharp.Handlers.Handler::Hello
-
-    # you can add packaging information here
+    events:
+      - http: GET hello
     package:
       artifact: bin/release/netcoreapp2.1/hello.zip
     #  exclude:
